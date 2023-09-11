@@ -13,13 +13,11 @@ public class Assignemnt2 {
 		Scanner userinp = new Scanner(System.in);
 		HashMap<String, Integer> words  = new HashMap<String, Integer> ();
 		System.out.println("Enter your Statement");
-		String[] listwords = userinp.split(" ,.;:",0);
+		String[] listwords = userinp.split(" 0123456789,.;:",0);
 		
 		for (int i = 0; i<listwords.length-1;i++){
-			if (words.containsKey(listwords[i])){
-				words.put(listwords[i],words.get(listwords[i])+1 );
-				
-			}
+			if (words.containsKey(listwords[i]))
+			{words.put(listwords[i],words.get(listwords[i])+1 );}
 			words.put(listwords[i], 1);
 			
 		
