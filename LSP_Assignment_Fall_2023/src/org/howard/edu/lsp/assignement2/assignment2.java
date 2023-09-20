@@ -10,9 +10,7 @@ public class assignment2 {
 		HashMap<String, Integer> words = new  HashMap<String, Integer>();
 		try {
 		String filepath = filename.readToString("main/java/resources/words.txt");
-		String filepath1 = filepath.replace(". ", " ");
-		String filepath2 = filepath1.replace(",", " ");
-		String[] listwords =filepath2.toLowerCase().split(" ");
+		String[] listwords =filepath.replaceAll("[^a-zA-z ]","").toLowerCase().split(" ");
 		
 		for (int i = 0; i < listwords.length;i++) {
 			if (listwords[i].length()>3) {
