@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 import java.util.Scanner;
 import java.util.HashMap;
-
+//This is my first attempt but is not the final projects
 
 public class Assignemnt2 {
 
