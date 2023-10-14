@@ -15,8 +15,7 @@ public class IntegerSet  {
 	}
  	
  	public void clear(ArrayList<Integer> set) {
- 		this.set = new ArrayList<Integer>();
- 		
+ 		this.set = new ArrayList<Integer>();	
  	};
  	
 	public int length(ArrayList<Integer> set) {
@@ -28,18 +27,58 @@ public class IntegerSet  {
 		System.out.println(x);
 	}; 
 	
-	public boolean equals(Object o) {
+	public boolean equals(ArrayList<Integer> set1, ArrayList<Integer> set2) {
+		boolean a = true;
+		Iterator<Integer> search1 = set1.iterator();
+		Iterator<Integer> search2 = set2.iterator();
+		while(search1.hasNext() && (search2.hasNext())){
+			if (search1.next()!=search2.next()) {
+				a=false;
+				break;
+			}
+		}
+		System.out.print(a);
+	};
+	
+	public boolean contains(int value, ArrayList<Integer> set) {
+		boolean a = false;
+		Iterator<Integer> search = set.iterator();
+		while(search.hasNext()) {
+			if (search.next()==value) {
+				 a = true;
+			}
+		System.out.print(a);
+		}
 		
 	};
-	public boolean contains(int value) {
-		
-	};
-	public int largest() {
-		
-	};
-	public int smallest() IntegerSetException {
-		
-	};
+	public int largest(ArrayList<Integer> set) throws IntegerSetException{
+		int large = 0;
+		Iterator<Integer> l = set.iterator();
+		if (set.isEmpty()) {
+			throw new IntegerSetException ("The set is empty") ;
+		}
+		while(l.hasNext()) {
+			if (l.next()>large) {
+				large = l.next();
+			}
+	}
+		System.out.println( large + " is the largest number in this set");
+		return large;
+}
+	
+	public int smallest(ArrayList<Integer> set) throws IntegerSetException {
+		int large = 0;
+		Iterator<Integer> l = set.iterator();
+		if (set.isEmpty()) {
+			throw new IntegerSetException ("The set is empty") ;
+		}
+		while(l.hasNext()) {
+			if (l.next()>large) {
+				large = l.next();
+			}
+	}
+		return large;
+	}
 	
 	public void add(int item,ArrayList<Integer> set) {
 		if (set.contains(item)) {
