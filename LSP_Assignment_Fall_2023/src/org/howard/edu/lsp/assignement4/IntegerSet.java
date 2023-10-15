@@ -61,25 +61,28 @@ public class IntegerSet  {
 			if (l.next()>large) {
 				large = l.next();
 			}
-	}
-		System.out.println( large + " is the largest number in this set");
-		return large;
+
+		return large+ " is the largest number in this set";
 }
 	
 	public int smallest(ArrayList<Integer> set) throws IntegerSetException {
-		int large = 0;
-		Iterator<Integer> l = set.iterator();
-		if (set.isEmpty()) {
-			throw new IntegerSetException ("The set is empty") ;
-		}
-		while(l.hasNext()) {
-			if (l.next()>large) {
-				large = l.next();
+			int small = 0;
+			Iterator<Integer> s = set.iterator();
+			Integer small = s.next();
+			if (s.hasNext() == false) {
+				throw new IntegerSetException("The set is empty");
+			} else {
+				small = s.next();
+				while (s.hasNext()) {
+					if (s.next() < small) {
+						small = s.next();
+					}
+				}
 			}
-	}
-		return large;
-	}
-	
+			return small;
+		}
+
+
 	public void add(int item,ArrayList<Integer> set) {
 		if (set.contains(item)) {
 			System.out.println("Item already present");
