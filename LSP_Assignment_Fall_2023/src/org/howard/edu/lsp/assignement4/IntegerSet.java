@@ -92,10 +92,21 @@ public class IntegerSet  {
 		}
 		
 	};
-	public void remove(int item) {
-		
-	};
-	public void union(IntegerSet intSetb) {
+	public void remove(int item,ArrayList<Integer> set ) {
+		boolean present = false
+		Iterator<Integer> gone = set.iterator();
+		while (gone.hasNext()){
+			Integer g = gone.next();
+			if (g == item){
+				 g =  Null
+			}
+		}
+	}
+
+	public void union(ArrayList<Integer> set1,ArrayList<Integer> set2) {
+			ArrayList<Integer> un = new ArrayList<Integer>();
+
+		}
 		
 	};
 	public void intersect(IntegerSet intSetb) {
