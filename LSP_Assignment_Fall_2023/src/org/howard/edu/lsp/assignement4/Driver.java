@@ -86,7 +86,7 @@ public class Driver {
 		set2.add(1);
 		set2.add(2);
 		set2.add(3);
-
+		System.out.println("set 1 contains 5:" +set1.contains(5));
 		set1.complement(set2);
 		System.out.println("The complement "+set1);
 		
