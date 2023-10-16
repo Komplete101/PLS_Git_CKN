@@ -107,16 +107,47 @@ public class IntegerSet  {
 		}
 	}
 
-	public void intersect(ArrayList<Integer> set1,ArrayList<Integer> set2) {
-		
+	public void intersect(IntegerSet setB) {
+		if (!setB.isEmpty()) {
+			for (int i = 0; i < setB.length();i++) {
+				int value = setB.get(i);
+				if (!set.contains(value)) {
+					set.remove(value);
+				}
+			}
+		}
 	}
-	public void diff(IntegerSet intSetb);{
+
+	public void complement(IntegerSet Setb) {
+		if (!setB.isEmpty()) {
+			for (int i = 0; i < setB.length();i++) {
+				int value = setB.get(i);
+				if (set.contains(value)) {
+					set.remove(value);
+				}
+			}
+		}
 	}
-	public void complement(IntegerSet intSetb) {
-		
+	public void diff(IntegerSet Setb);{
+		if (!setB.isEmpty()) {
+			for (int i = 0; i < setB.length();i++) {
+				int value = setB.get(i);
+				if (set.contains(value)) {
+					set.remove(value);
+				}
+			}
+		}
 	}
+
 	boolean isEmpty();
 	public String toString() {
+		String a = "";
+		Iterator<Integer> print = set.iterator();
+		while(print.hasNext()) {
+			a = a + print.next() + " ";
+		}
+		return a;
+
 		
 	}
 }
