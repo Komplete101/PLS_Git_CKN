@@ -1,13 +1,13 @@
 package org.howard.edu.lsp.assignement4;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class IntegerSet  {
 	private ArrayList<Integer> set = new ArrayList<Integer>();
-	
-	public IntegerSet() {
-		set = new ArrayList<Integer>();
+	public ArrayList<Integer> gett(){
+		return this.set;
 	}
 	
 	public void add(int item) {
@@ -38,116 +38,95 @@ public class IntegerSet  {
 		return a;
 	};
 
-	public int smallest(ArrayList<Integer> set) throws IntegerSetException {
-		Iterator<Integer> s = set.iterator();
-		int small = s.next();
-		if (s.hasNext() == false) {
-			throw new IntegerSetException("The set is empty");
-			break;
-		} else {
-			small = s.next();
-			while (s.hasNext()) {
-				if (s.next() < small) {
-					small = s.next();
-				}
-			}
+	public int smallest() throws IntegerSetException {
+		int smallest = 0;
+		if(set.isEmpty()) {
+			throw new IntegerSetException("IntegerSetException: The provided list is empty; there is no smallest integer.");
 		}
-		return small;
+		else {
+			ArrayList<Integer> sortedList = new ArrayList<Integer>(set);
+			Collections.sort(sortedList);								// this already existing Java method sorts in ascending order
+			smallest = sortedList.get(0);
+			return smallest;
+		}
 	}
-	public String largest(ArrayList<Integer> set) throws IntegerSetException{
-		int large = 0;
-		Iterator<Integer> l = set.iterator();
-		if (set.isEmpty()) {
-			throw new IntegerSetException ("The set is empty") ;
-			break;
+	public int largest() throws IntegerSetException{
+		int largest = 0;
+		if(set.isEmpty()) {
+			throw new IntegerSetException("IntegerSetException: The provided list is empty; there is no largest integer.");
 		}
-		while(l.hasNext()) {
-			if (l.next()>large) {
-				large = l.next();
-			}
+		else {
+			ArrayList<Integer> sortedList = new ArrayList<Integer>(set);
+			Collections.sort(sortedList);								
+			largest = sortedList.get(sortedList.size() -1);
+			return largest;
 		}
-		return large+ " is the largest number in this set";	}
+	}
 
-	public int length(ArrayList<Integer> set) {
-		int x = 0;
-		Iterator<Integer> count = set.iterator();
-		while(count.hasNext()) {
-			++x;
-		}
-		return x;
+	public int length() {
+		return set.size();
 	};
 
-	public boolean equals(ArrayList<Integer> set1, ArrayList<Integer> set2) {
-		boolean a = true;
-		Iterator<Integer> search1 = set1.iterator();
-		Iterator<Integer> search2 = set2.iterator();
-		if (!set1.size()==set2.size()) {
-			a = false;
-			break
-		}
-		else{
-			while(search1.hasNext() && (search2.hasNext())) {
-				if (!search1.next() == search2.next()) {
-					a = false;
-					break;
-				}
-			}
-		}
-		return a;
-	};
+	public boolean equals(Integer setB) {
+		ArrayList<Integer> set1 = setB.gett();
+		if(set.containsAll(set1) && set1.containsAll(set)) {		
+			return true;		}	
+		else {
+			return false;
+	}
+}
 
 	public void union(IntegerSet setB) {
-		if (!setB.isEmpty()) {
-			for (int i = 0; i < setB.length();i++) {
-				int value = setB.get(i);
-				if (!set.contains(value)) {
-					set.add(value);
-				}
-			}
-		}
-	}
+		ArrayList<Integer> set1 = setB.gett();			
+	    for (int i = 0; i < set1.size(); i++) {			
+	       if (!set.contains(set1.get(i)))  {				
+	           add(set1.get(i));							
+	       }
+	    }
+		System.out.println(set1);
+	}	
+	
 
 	public void intersect(IntegerSet setB) {
-		if (!setB.isEmpty()) {
-			for (int i = 0; i < setB.length();i++) {
-				int value = setB.get(i);
-				if (!set.contains(value)) {
-					set.remove(value);
-				}
+		ArrayList<Integer> set1 = set;			
+		ArrayList<Integer> set2 = setB.gett();	
+		set1.retainAll(set2);
+	}
+	
+	public void diff(IntegerSet setB){
+		ArrayList<Integer> set1 = set;
+		ArrayList<Integer> set2 = setB.gett();
+		for (int i = 0; i< set2.size();i++) {
+			if (set1.contains(set2.get(i))) {
+				set1.remove(set2.get(i));
 			}
 		}
 	}
-
-	public void complement(IntegerSet Setb) {
-		if (!setB.isEmpty()) {
-			for (int i = 0; i < setB.length();i++) {
-				int value = setB.get(i);
-				if (set.contains(value)) {
-					set.remove(value);
-				}
+	public void complement(IntegerSet setB) {
+		ArrayList<Integer> set1 = set;
+		ArrayList<Integer> set2 = setB.gett();
+		for (int i = 0; i< set2.size();i++) {
+			if (set1.contains(set2.get(i))) {
+				set1.remove(set2.get(i));
 			}
-		}
+		}		
 	}
-	public void diff(IntegerSet Setb);{
-		if (!setB.isEmpty()) {
-			for (int i = 0; i < setB.length();i++) {
-				int value = setB.get(i);
-				if (set.contains(value)) {
-					set.remove(value);
-				}
-			}
-		}
+	public boolean isEmpty() {
+		boolean empty;
+		empty = (!(set.size()>0));
+		return empty;
+		
 	}
-
-	boolean isEmpty();
 	public String toString() {
-		String a = "";
-		Iterator<Integer> print = set.iterator();
-		while(print.hasNext()) {
-			a = a + print.next() + " ";
+		String setstr= "";
+		for (int i = 0; i< set.size(); i++) {
+			setstr = setstr.concat(String.valueOf(set.get(i)));
+			if (i<set.size()-1) {
+				setstr = setstr.concat(", ");
+				
+			}
 		}
-		return a;
-
+		return setstr;
 		
 	}
 }
