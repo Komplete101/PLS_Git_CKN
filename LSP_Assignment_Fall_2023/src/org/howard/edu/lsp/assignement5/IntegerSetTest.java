@@ -13,8 +13,8 @@ public class IntegerSetTest {
 
 	@BeforeEach
 	void creationSet() {
-		set1 = new IntegerSet();
-		set2 = new IntegerSet();
+		set1 = new IntegerSet(); //Created a new set1
+		set2 = new IntegerSet(); //Created a new set2
 	}
 
 	@Test
@@ -26,8 +26,11 @@ public class IntegerSetTest {
 		set1.add(4);
 		set1.add(5); //set1 is [1,2,3,4,5]
 
-		assertEquals(true, set1.contains(1)); //set1 is [1,2,3,4,5]
-		assertEquals(false,set1.contains(0));
+		assertEquals(true, set1.contains(1)); //should return true because 1 is present in set1
+		assertEquals(false,set1.contains(0)); //should return false because 0 isn't present in set1
+		assertEquals(true,set1.contains(5)); //should return true because 5 is present in set1
+		assertEquals(false,set1.contains(6)); //should return false because 6 isn't present in set1
+		assertEquals(true,set1.contains(3)); //should return true because 3 is present in set1
 	}
 
 	@Test
@@ -41,6 +44,8 @@ public class IntegerSetTest {
 		assertEquals(true, set1.contains(2)); //set1 contains 2
 		set1.remove(2); //set1 is [1,3,4,5]
 		assertEquals(false, set1.contains(2)); 	//set1 does not contain 2
+		set1.remove(1); //set1 is [3,4,5]
+		assertEquals(false, set1.contains(1)); //set1 does not contain 1
 	}
 
 
@@ -55,6 +60,9 @@ public class IntegerSetTest {
 		assertEquals(false,set1.length()==0); //set1 is not empty
 		set1.clear(); //set1 is []
 		assertEquals(true,set1.length()==0); //set1 is empty
+		set1.add(1);
+		set1.add(2);
+		assertEquals(false,set1.length()==0); //set1 is not empty
 	}
 
 
@@ -65,6 +73,11 @@ public class IntegerSetTest {
 		set1.add(1); //set1 is [0,1]
 		assertEquals(true,set1.contains(1)); //set1 contains 1
 		assertEquals(false,set1.contains(2)); //set1 does not contain 2
+		set1.add(2); //set1 is [0,1,2]
+		assertEquals(true,set1.contains(2)); //set1 contains 2
+		assertEquals(false,set1.contains(3)); //set1 does not contain 3
+		set1.add(3); //set1 is [0,1,2,3]
+		assertEquals(true,set1.contains(3)); //set1 contains 3
 	}
 
 	@Test
@@ -77,6 +90,11 @@ public class IntegerSetTest {
 		assertEquals(0,set1.smallest()); //set1.smallest() is 0
 		set1.remove(0); //set1 is [1,2,3]
 		assertEquals(1,set1.smallest()); //set1.smallest() is 1
+		set1.clear(); //set1 is []
+		set1.add(10);
+		set1.add(20);
+		set1.add(3);
+		assertEquals(3,set1.smallest()); //set1.smallest() is 3
 	}
 
 	@Test
@@ -100,6 +118,11 @@ public class IntegerSetTest {
 		assertEquals(3,set1.largest()); //set1.largest() is 3
 		set1.remove(3); //set1 is [0,1,2]
 		assertEquals(2,set1.largest()); //set1.largest() is 2
+		set1.clear(); //set1 is []
+		set1.add(10);
+		set1.add(20);
+		set1.add(3);
+		assertEquals(20,set1.largest()); //set1.largest() is 20
 	}
 
 	@Test
@@ -123,6 +146,10 @@ public class IntegerSetTest {
 		assertEquals(4,set1.length()); //set1.length() is 4
 		set1.remove(3); //set1 is [0,1,2]
 		assertEquals(3,set1.length()); //set1.length() is 3
+		set1.clear(); //set1 is []
+		assertEquals(0,set1.length()); //set1.length() is 0
+		set1.add(10);
+		assertEquals(1,set1.length()); //set1.length() is 1
 	}
 
 	@Test
