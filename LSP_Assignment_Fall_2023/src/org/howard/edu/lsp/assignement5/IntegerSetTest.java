@@ -12,7 +12,7 @@ public class IntegerSetTest {
 	private IntegerSet set2;
 
 	@BeforeEach
-	void creationSet() {
+	void setUp() {
 		set1 = new IntegerSet(); //Created a new set1
 		set2 = new IntegerSet(); //Created a new set2
 	}
